@@ -10,19 +10,66 @@ let currentQuestion = {};
 let acceptingAnswers = false;
 let score = 0;
 let questionCounter = 0;
-let availableQuesions = [];
+let availableQuestions = [];
 
-let questions = [];
+let questions = [
+  /*
+  {
+    question: "Inside which HTML element do we put the JavaScript??",
+    choice1: "<script>",
+    choice2: "<javascript>",
+    choice3: "<js>",
+    choice4: "<scripting>",
+    answer: 1,
+  },
+  {
+    question:
+      "What is the correct syntax for referring to an external script called 'xxx.js'?",
+    choice1: "<script href='xxx.js'>",
+    choice2: "<script name='xxx.js'>",
+    choice3: "<script src='xxx.js'>",
+    choice4: "<script file='xxx.js'>",
+    answer: 3,
+  },
+  {
+    question: "How do you write 'Hello World' in an alert box?",
+    choice1: "msgBox('Hello World');",
+    choice2: "alertBox('Hello World');",
+    choice3: "msg('Hello World');",
+    choice4: "alert('Hello World');",
+    answer: 4,
+  },
+  {
+    question: "Which type of JavaScript language is ___",
+    choice1: "Object-Oriented",
+    choice2: "Object-Based",
+    choice3: "Assembly-language",
+    choice4: "High-level",
+    answer: 2,
+  },
+  {
+    question: "function and var are known as:",
+    choice1: "Keywords",
+    choice2: "Data types",
+    choice3: "Declaration statements",
+    choice4: "Prototypes",
+    answer: 3,
+  },
+*/
+];
 
+/*
 fetch(
   "https://opentdb.com/api.php?amount=25&category=18&difficulty=medium&type=multiple"
-)
+)*/
+
+fetch("questions.json")
   .then((res) => {
     return res.json();
   })
   .then((loadedQuestions) => {
-    console.log(loadedQuestions.results);
-    questions = loadedQuestions.results.map((loadedQuestion) => {
+    questions = loadedQuestions;
+    /*    questions = loadedQuestions.results.map((loadedQuestion) => {
       const formattedQuestion = {
         question: loadedQuestion.question,
       };
@@ -39,7 +86,7 @@ fetch(
         formattedQuestion["choice" + (index + 1)] = choice;
       });
       return formattedQuestion;
-    });
+    });*/
     startGame();
   })
   .catch((err) => {
@@ -53,14 +100,15 @@ const MAX_QUESTIONS = 5;
 startGame = () => {
   questionCounter = 0;
   score = 0;
-  availableQuesions = [...questions];
+  availableQuestions = [...questions];
+  console.log(availableQuestions);
   getNewQuestion();
   game.classList.remove("hidden");
-  loader.classList.add("hidden");
+  /*  loader.classList.add("hidden");*/
 };
 
 getNewQuestion = () => {
-  if (availableQuesions.length === 0 || questionCounter >= MAX_QUESTIONS) {
+  if (availableQuestions.length === 0 || questionCounter >= MAX_QUESTIONS) {
     sessionStorage.setItem("mostRecentScore", score);
     //go to the end page
     return window.location.assign("end.html");
@@ -72,8 +120,8 @@ getNewQuestion = () => {
 
   scoreText.innerText = score;
   console.log("🚀 ~ file: game.js ~ line 64 ~ score", score);
-  const questionIndex = Math.floor(Math.random() * availableQuesions.length);
-  currentQuestion = availableQuesions[questionIndex];
+  const questionIndex = Math.floor(Math.random() * availableQuestions.length);
+  currentQuestion = availableQuestions[questionIndex];
   question.innerHTML = currentQuestion.question;
 
   choices.forEach((choice) => {
@@ -81,7 +129,7 @@ getNewQuestion = () => {
     choice.innerHTML = currentQuestion["choice" + number];
   });
 
-  availableQuesions.splice(questionIndex, 1);
+  availableQuestions.splice(questionIndex, 1);
   acceptingAnswers = true;
 };
 
