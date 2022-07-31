@@ -49,6 +49,7 @@ getNewQuestion = () => {
     timeRemaining === 0
   ) {
     sessionStorage.setItem("mostRecentScore", score);
+    sessionStorage.setItem("mostRecentTime", timeRemaining);
     //go to the end page
     return window.location.assign("end.html");
   }
