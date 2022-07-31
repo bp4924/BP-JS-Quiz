@@ -18,7 +18,6 @@ function startTimer() {
   scoreText.textContent = score;
   runClock();
   sessionStorage.setItem("gameTime", timeRemaining);
-
   return timeRemaining;
 }
 
@@ -26,7 +25,8 @@ function startTimer() {
 function runClock() {
   timeRemaining--;
   console.log(timeRemaining);
-  if (timeRemaining < 1) {
+  if (timeRemaining <= 0) {
+    sessionStorage.setItem("gameTime", 0);
     return window.location.assign("end.html");
   }
   timer();
