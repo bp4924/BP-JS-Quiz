@@ -12,9 +12,16 @@ let acceptingAnswers = false;
 let score = 0;
 let questionCounter = 0;
 let availableQuestions = [];
-
 let questions = [];
 
+// initial values
+const correctPoints = 10;
+const timePenalty = 5;
+const maxQuestions = 5;
+
+let timeRemaining = 30;
+
+// load question bank
 fetch("questions.json")
   .then((res) => {
     return res.json();
@@ -27,12 +34,8 @@ fetch("questions.json")
     console.error(err);
   });
 
-//CONSTANTS
-const correctPoints = 10;
-const maxQuestions = 5;
-let timeRemaining = 30;
-
-startGame = () => {
+// begin game function
+function startGame() {
   questionCounter = 0;
   score = 0;
   availableQuestions = [...questions];
@@ -40,9 +43,10 @@ startGame = () => {
   getNewQuestion();
   game.classList.remove("hidden");
   startTimer();
-};
+}
 
-getNewQuestion = () => {
+// new question generator
+function getNewQuestion() {
   sessionStorage.setItem("gameScore", score);
   sessionStorage.setItem("gameTime", timeRemaining);
   console.log(availableQuestions.length, questionCounter, timeRemaining);
@@ -55,14 +59,15 @@ getNewQuestion = () => {
     //go to the end page
     return window.location.assign("end.html");
   }
+
   questionCounter++;
   progressText.innerText = `Question ${questionCounter}/${maxQuestions}`;
+
   //update progress bar
   progressBarFull.style.width = `${(questionCounter / maxQuestions) * 100}%`;
   time.innerText = timeRemaining;
 
   scoreText.innerText = score;
-  console.log("🚀 ~ file: game.js ~ line 64 ~ score", score);
   const questionIndex = Math.floor(Math.random() * availableQuestions.length);
   currentQuestion = availableQuestions[questionIndex];
   question.innerHTML = currentQuestion.question;
@@ -74,8 +79,9 @@ getNewQuestion = () => {
 
   availableQuestions.splice(questionIndex, 1);
   acceptingAnswers = true;
-};
+}
 
+// show green for correct/red for incorrect by applying class
 choices.forEach((choice) => {
   choice.addEventListener("click", (e) => {
     if (!acceptingAnswers) return;
@@ -89,18 +95,21 @@ choices.forEach((choice) => {
 
     if (classToApply == "correct") {
       incrementScore(correctPoints);
+    } else {
+      timeRemaining -= timePenalty;
     }
 
     selectedChoice.parentElement.classList.add(classToApply);
 
+    // set delay
     setTimeout(() => {
       selectedChoice.parentElement.classList.remove(classToApply);
       getNewQuestion();
-    }, 1000);
+    }, 500);
   });
 });
 
-incrementScore = (num) => {
+function incrementScore(num) {
   score += num;
   scoreText.innerText = score;
-};
+}

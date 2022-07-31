@@ -23,7 +23,7 @@ username.addEventListener("keyup", () => {
   saveScoreBtn.disabled = !username.value;
 });
 
-saveHighScore = (e) => {
+function saveHighScore(e) {
   console.log("SAVE CLICK");
   e.preventDefault();
 
@@ -36,5 +36,5 @@ saveHighScore = (e) => {
   highScores.splice(maxHighScores);
 
   localStorage.setItem("highScores", JSON.stringify(highScores));
-  window.location.assign("index.html");
-};
+  window.location.assign("highscores.html");
+}
