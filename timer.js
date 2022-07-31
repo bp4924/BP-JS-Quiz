@@ -8,6 +8,7 @@ function timer() {
     timeLeftDisplay.style.color = "black";
   }
   timeLeftDisplay.textContent = timeRemaining;
+  sessionStorage.setItem("gameTime", timeRemaining);
 }
 
 // start clock
@@ -16,6 +17,8 @@ function startTimer() {
   timeLeftDisplay.textContent = timeRemaining;
   scoreText.textContent = score;
   runClock();
+  sessionStorage.setItem("gameTime", timeRemaining);
+
   return timeRemaining;
 }
 
@@ -23,5 +26,8 @@ function startTimer() {
 function runClock() {
   timeRemaining--;
   console.log(timeRemaining);
+  if (timeRemaining < 1) {
+    return window.location.assign("end.html");
+  }
   timer();
 }

@@ -7,7 +7,7 @@ const rawScore = document.getElementById("rawScore");
 const gameScore = +sessionStorage.getItem("gameScore");
 const gameTime = +sessionStorage.getItem("gameTime");
 
-const highScores = JSON.parse(sessionStorage.getItem("highScores")) || [];
+const highScores = JSON.parse(localStorage.getItem("highScores")) || [];
 
 const maxHighScores = 5;
 
@@ -35,6 +35,6 @@ saveHighScore = (e) => {
   highScores.sort((a, b) => b.score - a.score);
   highScores.splice(maxHighScores);
 
-  sessionStorage.setItem("highScores", JSON.stringify(highScores));
+  localStorage.setItem("highScores", JSON.stringify(highScores));
   window.location.assign("index.html");
 };

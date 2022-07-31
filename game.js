@@ -43,13 +43,15 @@ startGame = () => {
 };
 
 getNewQuestion = () => {
+  sessionStorage.setItem("gameScore", score);
+  sessionStorage.setItem("gameTime", timeRemaining);
+  console.log(availableQuestions.length, questionCounter, timeRemaining);
   if (
     availableQuestions.length === 0 ||
     questionCounter >= maxQuestions ||
-    timeRemaining === 0
+    timeRemaining < 1
   ) {
-    sessionStorage.setItem("gameScore", score);
-    sessionStorage.setItem("gameTime", timeRemaining);
+    console.log(availableQuestions.length, questionCounter, timeRemaining);
     //go to the end page
     return window.location.assign("end.html");
   }
