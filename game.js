@@ -48,8 +48,8 @@ getNewQuestion = () => {
     questionCounter >= maxQuestions ||
     timeRemaining === 0
   ) {
-    sessionStorage.setItem("mostRecentScore", score);
-    sessionStorage.setItem("mostRecentTime", timeRemaining);
+    sessionStorage.setItem("gameScore", score);
+    sessionStorage.setItem("gameTime", timeRemaining);
     //go to the end page
     return window.location.assign("end.html");
   }

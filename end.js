@@ -4,20 +4,20 @@ const finalScore = document.getElementById("finalScore");
 const timeBonus = document.getElementById("timeBonus");
 const rawScore = document.getElementById("rawScore");
 
-const mostRecentScore = +sessionStorage.getItem("mostRecentScore");
-const mostRecentTime = +sessionStorage.getItem("mostRecentTime");
+const gameScore = +sessionStorage.getItem("gameScore");
+const gameTime = +sessionStorage.getItem("gameTime");
 
 const highScores = JSON.parse(sessionStorage.getItem("highScores")) || [];
 
 const maxHighScores = 5;
 
-let correctedScore = mostRecentScore + mostRecentTime;
+let correctedScore = gameScore + gameTime;
 
 finalScore.innerText = `Final Score: ${correctedScore}`;
 
-rawScore.innerText = `Correct Answers (10 pts each): ${mostRecentScore / 10}`;
+rawScore.innerText = `Correct Answers (10 pts each): ${gameScore / 10}`;
 
-timeBonus.innerText = `Time Bonus: ${mostRecentTime}`;
+timeBonus.innerText = `Time Bonus: ${gameTime}`;
 
 username.addEventListener("keyup", () => {
   saveScoreBtn.disabled = !username.value;
