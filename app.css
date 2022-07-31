@@ -1,5 +1,6 @@
 :root {
   --textColor: #8b2d70;
+  --buttonBack: rgb(213, 236, 227);
   --radius: 0.5rem;
   --shadow: 0 0.4rem 1.4rem 0 rgba(187, 99, 209, 0.5);
   background-color: #b8f3c2;
@@ -95,7 +96,7 @@ h3 {
   margin-bottom: 1rem;
   text-decoration: none;
   color: var(--textColor);
-  background-color: white;
+  background-color: var(--buttonBack);
 }
 
 .btn:hover {
