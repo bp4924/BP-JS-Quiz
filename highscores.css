@@ -6,6 +6,8 @@
 .high-score {
   font-size: 2rem;
   margin-bottom: 1rem;
+  color: var(--textColor);
+  font-weight: bold;
 }
 
 .high-score:hover {

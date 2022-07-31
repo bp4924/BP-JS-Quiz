@@ -4,8 +4,6 @@ let timerId = timeRemaining;
 function timer() {
   if (timeRemaining < 6) {
     timeLeftDisplay.style.color = "red";
-  } else {
-    timeLeftDisplay.style.color = "black";
   }
   timeLeftDisplay.textContent = timeRemaining;
   sessionStorage.setItem("gameTime", timeRemaining);
