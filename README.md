@@ -30,7 +30,7 @@ Responsive design
 
 ### Screenshot
 
-![App Screenshot](https://bp4924.github.io/BP-JS-Quiz/Assets/ss1.jpg)
+![App Screenshot](https://bp4924.github.io/BP-JS-Quiz/assets/ss1.jpg)
 
 ## Link
 
