@@ -1,7 +1,7 @@
 let timerId = timeRemaining;
 
 // update timer display
-function timer() {
+function timerDisplay() {
   if (timeRemaining < 6) {
     timeLeftDisplay.style.color = "red";
   }
@@ -27,5 +27,5 @@ function runClock() {
     sessionStorage.setItem("gameTime", 0);
     return window.location.assign("end.html");
   }
-  timer();
+  timerDisplay();
 }

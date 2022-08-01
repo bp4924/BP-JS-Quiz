@@ -4,21 +4,21 @@ GT boot camp challenge #4
 
 ### Task
 
-Modify starter code to create an application that enables employees to generate random passwords based on criteria that they’ve selected.
+Build a timed coding quiz app with multiple-choice questions.
 
-Prompt user to confirm or modify criteria
+This app will run in the browser and will feature dynamically updated HTML and CSS powered by JavaScript code.
 
-Test that user input meets minimum requirements
-
-Test that result includes all selected options
-
-Dynamically update HTML & CSS using JavaScript
+It will have a clean, polished, and responsive user interface.
 
 ### Technologies employed
 
-Generate random whole numbers
+Import questions from a .JSON file using fetch
 
-Select characters using fromCharCode method
+error checking
+
+Dynamic scoring and timing
+
+Save results to session and local storage as appropriate
 
 Media queries
 
@@ -36,24 +36,6 @@ Responsive design
 
 https://bp4924.github.io/BP-Password/
 
-# 04 Web APIs: Code Quiz
-
-## Your Task
-
-At some point in your journey to become a full-stack web developer, you’ll likely be asked to complete a coding assessment&mdash;perhaps as part of an interview process. A typical coding assessment includes both multiple-choice questions and interactive coding challenges.
-
-To help familiarize you with these tests and allow you to use the skills covered in this module, this Challenge invites you to build a timed coding quiz with multiple-choice questions. This app will run in the browser and will feature dynamically updated HTML and CSS powered by JavaScript code that you write. It will have a clean, polished, and responsive user interface.
-
-This week’s coursework will equip you with all the skills you need to succeed in this assignment.
-
-## User Story
-
-```
-AS A coding boot camp student
-I WANT to take a timed quiz on JavaScript fundamentals that stores high scores
-SO THAT I can gauge my progress compared to my peers
-```
-
 ## Acceptance Criteria
 
 ```
@@ -69,12 +51,6 @@ THEN the game is over
 WHEN the game is over
 THEN I can save my initials and my score
 ```
-
-## Mock-Up
-
-The following animation demonstrates the application functionality:
-
-![A user clicks through an interactive coding quiz, then enters initials to save the high score before resetting and starting over.](./Assets/04-web-apis-homework-demo.gif)
 
 ## Grading Requirements
 
