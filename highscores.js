@@ -7,7 +7,6 @@ clearHighScores.addEventListener("click", clearScores);
 scoreList();
 
 function clearScores() {
-  console.log("clear scores function clicked.");
   localStorage.clear();
   highScoresList.innerHTML = "";
 }

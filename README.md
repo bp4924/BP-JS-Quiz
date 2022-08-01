@@ -16,7 +16,7 @@ Import questions from a .JSON file using fetch
 
 error checking
 
-Dynamic scoring and timing
+Dynamic scoring and timing (including time penalty for wrong answers, and time bonus for final score)
 
 Save results to session and local storage as appropriate
 
@@ -35,7 +35,6 @@ Responsive design
 ## Link
 
 https://bp4924.github.io/BP-JS-Quiz/
-
 
 ## Acceptance Criteria
 
