@@ -38,5 +38,45 @@
     "choice3": "Declaration statements",
     "choice4": "Prototypes",
     "answer": 3
+  },
+  {
+    "question": "Commonly used datatypes do not include",
+    "choice1": "Alerts",
+    "choice2": "Strings",
+    "choice3": "Booleans",
+    "choice4": "Numbers",
+    "answer": 1
+  },
+  {
+    "question": "String values must be enclosed within _____ when being assigned to variables",
+    "choice1": "Curly Brackets",
+    "choice2": "Parentheses",
+    "choice3": "Commas",
+    "choice4": "Quotes",
+    "answer": 4
+  },
+  {
+    "question": "The condition in an if / else statement is contained within:",
+    "choice1": "Quotes",
+    "choice2": "Parentheses",
+    "choice3": "Curly Brackets",
+    "choice4": "Square Brackets",
+    "answer": 2
+  },
+  {
+    "question": "Arrays in JavaScript can be used to store:",
+    "choice1": "Numbers & values",
+    "choice2": "Booleans",
+    "choice3": "Other arrays",
+    "choice4": "All of the above",
+    "answer": 4
+  },
+  {
+    "question": "A very useful tool used during development and debugging for printing content to the debugger is:",
+    "choice1": "JavaScript",
+    "choice2": "Terminal/Bash",
+    "choice3": "Console.log",
+    "choice4": "For loops",
+    "answer": 3
   }
 ]

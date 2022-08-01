@@ -1,13 +1,12 @@
 let timerId = timeRemaining;
 
 // update timer display
-function timer() {
+function timerDisplay() {
   if (timeRemaining < 6) {
     timeLeftDisplay.style.color = "red";
-  } else {
-    timeLeftDisplay.style.color = "black";
   }
   timeLeftDisplay.textContent = timeRemaining;
+  sessionStorage.setItem("gameTime", timeRemaining);
 }
 
 // start clock
@@ -16,6 +15,7 @@ function startTimer() {
   timeLeftDisplay.textContent = timeRemaining;
   scoreText.textContent = score;
   runClock();
+  sessionStorage.setItem("gameTime", timeRemaining);
   return timeRemaining;
 }
 
@@ -23,5 +23,9 @@ function startTimer() {
 function runClock() {
   timeRemaining--;
   console.log(timeRemaining);
-  timer();
+  if (timeRemaining <= 0) {
+    sessionStorage.setItem("gameTime", 0);
+    return window.location.assign("end.html");
+  }
+  timerDisplay();
 }

@@ -1,30 +1,40 @@
 const username = document.getElementById("username");
 const saveScoreBtn = document.getElementById("saveScoreBtn");
 const finalScore = document.getElementById("finalScore");
-const mostRecentScore = sessionStorage.getItem("mostRecentScore");
+const timeBonus = document.getElementById("timeBonus");
+const rawScore = document.getElementById("rawScore");
 
-const highScores = JSON.parse(sessionStorage.getItem("highScores")) || [];
+const gameScore = +sessionStorage.getItem("gameScore");
+const gameTime = +sessionStorage.getItem("gameTime");
 
-const MAX_HIGH_SCORES = 5;
+const highScores = JSON.parse(localStorage.getItem("highScores")) || [];
 
-finalScore.innerText = mostRecentScore;
+const maxHighScores = 5;
+
+let correctedScore = gameScore + gameTime;
+
+finalScore.innerText = `Final Score: ${correctedScore}`;
+
+rawScore.innerText = `Correct Answers (10 pts each): ${gameScore / 10}`;
+
+timeBonus.innerText = `Time Bonus: ${gameTime}`;
 
 username.addEventListener("keyup", () => {
   saveScoreBtn.disabled = !username.value;
 });
 
-saveHighScore = (e) => {
+function saveHighScore(e) {
   console.log("SAVE CLICK");
   e.preventDefault();
 
   const score = {
-    score: mostRecentScore,
+    score: correctedScore,
     name: username.value,
   };
   highScores.push(score);
   highScores.sort((a, b) => b.score - a.score);
-  highScores.splice(MAX_HIGH_SCORES);
+  highScores.splice(maxHighScores);
 
-  sessionStorage.setItem("highScores", JSON.stringify(highScores));
-  window.location.assign("index.html");
-};
+  localStorage.setItem("highScores", JSON.stringify(highScores));
+  window.location.assign("highscores.html");
+}
