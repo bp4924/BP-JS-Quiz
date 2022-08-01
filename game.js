@@ -5,41 +5,22 @@ const scoreText = document.getElementById("score");
 const progressBarFull = document.getElementById("progressBarFull");
 const loader = document.getElementById("loader");
 const game = document.getElementById("game");
+const timeLeftDisplay = document.getElementById("time");
 
 let currentQuestion = {};
 let acceptingAnswers = false;
 let score = 0;
 let questionCounter = 0;
-let availableQuesions = [];
+let availableQuestions = [];
 
 let questions = [];
 
-fetch(
-  "https://opentdb.com/api.php?amount=25&category=18&difficulty=medium&type=multiple"
-)
+fetch("questions.json")
   .then((res) => {
     return res.json();
   })
   .then((loadedQuestions) => {
-    console.log(loadedQuestions.results);
-    questions = loadedQuestions.results.map((loadedQuestion) => {
-      const formattedQuestion = {
-        question: loadedQuestion.question,
-      };
-
-      const answerChoices = [...loadedQuestion.incorrect_answers];
-      formattedQuestion.answer = Math.floor(Math.random() * 3) + 1;
-      answerChoices.splice(
-        formattedQuestion.answer - 1,
-        0,
-        loadedQuestion.correct_answer
-      );
-
-      answerChoices.forEach((choice, index) => {
-        formattedQuestion["choice" + (index + 1)] = choice;
-      });
-      return formattedQuestion;
-    });
+    questions = loadedQuestions;
     startGame();
   })
   .catch((err) => {
@@ -47,33 +28,40 @@ fetch(
   });
 
 //CONSTANTS
-const CORRECT_BONUS = 10;
-const MAX_QUESTIONS = 5;
+const correctPoints = 10;
+const maxQuestions = 5;
+let timeRemaining = 30;
 
 startGame = () => {
   questionCounter = 0;
   score = 0;
-  availableQuesions = [...questions];
+  availableQuestions = [...questions];
+  console.log(availableQuestions);
   getNewQuestion();
   game.classList.remove("hidden");
-  loader.classList.add("hidden");
+  startTimer();
 };
 
 getNewQuestion = () => {
-  if (availableQuesions.length === 0 || questionCounter >= MAX_QUESTIONS) {
+  if (
+    availableQuestions.length === 0 ||
+    questionCounter >= maxQuestions ||
+    timeRemaining === 0
+  ) {
     sessionStorage.setItem("mostRecentScore", score);
     //go to the end page
     return window.location.assign("end.html");
   }
   questionCounter++;
-  progressText.innerText = `Question ${questionCounter}/${MAX_QUESTIONS}`;
+  progressText.innerText = `Question ${questionCounter}/${maxQuestions}`;
   //update progress bar
-  progressBarFull.style.width = `${(questionCounter / MAX_QUESTIONS) * 100}%`;
+  progressBarFull.style.width = `${(questionCounter / maxQuestions) * 100}%`;
+  time.innerText = timeRemaining;
 
   scoreText.innerText = score;
   console.log("🚀 ~ file: game.js ~ line 64 ~ score", score);
-  const questionIndex = Math.floor(Math.random() * availableQuesions.length);
-  currentQuestion = availableQuesions[questionIndex];
+  const questionIndex = Math.floor(Math.random() * availableQuestions.length);
+  currentQuestion = availableQuestions[questionIndex];
   question.innerHTML = currentQuestion.question;
 
   choices.forEach((choice) => {
@@ -81,7 +69,7 @@ getNewQuestion = () => {
     choice.innerHTML = currentQuestion["choice" + number];
   });
 
-  availableQuesions.splice(questionIndex, 1);
+  availableQuestions.splice(questionIndex, 1);
   acceptingAnswers = true;
 };
 
@@ -97,7 +85,7 @@ choices.forEach((choice) => {
       selectedAnswer == currentQuestion.answer ? "correct" : "incorrect";
 
     if (classToApply == "correct") {
-      incrementScore(CORRECT_BONUS);
+      incrementScore(correctPoints);
     }
 
     selectedChoice.parentElement.classList.add(classToApply);
