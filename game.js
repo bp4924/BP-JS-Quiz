@@ -39,7 +39,6 @@ function startGame() {
   questionCounter = 0;
   score = 0;
   availableQuestions = [...questions];
-  console.log(availableQuestions);
   getNewQuestion();
   game.classList.remove("hidden");
   startTimer();
@@ -49,13 +48,11 @@ function startGame() {
 function getNewQuestion() {
   sessionStorage.setItem("gameScore", score);
   sessionStorage.setItem("gameTime", timeRemaining);
-  console.log(availableQuestions.length, questionCounter, timeRemaining);
   if (
     availableQuestions.length === 0 ||
     questionCounter >= maxQuestions ||
     timeRemaining < 1
   ) {
-    console.log(availableQuestions.length, questionCounter, timeRemaining);
     //go to the end page
     return window.location.assign("end.html");
   }

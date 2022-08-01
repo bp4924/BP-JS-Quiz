@@ -24,7 +24,6 @@ username.addEventListener("keyup", () => {
 });
 
 function saveHighScore(e) {
-  console.log("SAVE CLICK");
   e.preventDefault();
 
   const score = {

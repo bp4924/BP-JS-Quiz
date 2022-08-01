@@ -34,19 +34,19 @@
   background-color: #dc3545;
 }
 
-/* HUD */
+/* statLine */
 
-#hud {
+#statLine {
   display: flex;
   justify-content: space-between;
 }
 
-.hud-prefix {
+.statLine-prefix {
   text-align: center;
   font-size: 2rem;
 }
 
-.hud-main-text {
+.statLine-main-text {
   text-align: center;
   flex-grow: 2;
   color: var(--textColor);
